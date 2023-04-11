@@ -12,7 +12,7 @@ export default function SectionTop({ content, meta }) {
     <Container id="top-section">
       <Typography
         sx={{
-          textTransform: 'uppercase',
+          // textTransform: 'uppercase',
           fontSize: { xs: '70px', md: '90px' },
           fontWeight: '800',
           whiteSpace: 'pre-wrap',
@@ -21,13 +21,13 @@ export default function SectionTop({ content, meta }) {
       >
         {t('title')}
       </Typography>
-      <Box
+      {/* <Box
         component="img"
         src="/images/top-background.png"
         my={'30px'}
         width={'100%'}
         borderRadius={'16px'}
-      />
+      /> */}
       <Typography
         sx={{
           fontWeight: '400',
