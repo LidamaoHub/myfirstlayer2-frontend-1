@@ -4,6 +4,7 @@ import {
   lightTheme,
   midnightTheme,
 } from "@rainbow-me/rainbowkit";
+import Script from 'next/script';
 
 /* RainbowKit imports */
 import "@rainbow-me/rainbowkit/styles.css";
@@ -35,7 +36,7 @@ const wagmiClient = createClient({
 });
 /* RainbowKit variables */
 
-export const ColorModeContext = createContext({ toggleColorMode: () => {} });
+export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
 export default function App({ Component, pageProps }) {
   const [mode, setMode] = useState("light");
@@ -67,6 +68,7 @@ export default function App({ Component, pageProps }) {
           <ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={theme}>
               <Component {...pageProps} />
+              <Script src="https://cdn.jsdelivr.net/npm/donate3-sdk@0.3.48/dist/webpack/bundle.js" />
             </ThemeProvider>
           </ColorModeContext.Provider>
         </NextIntlProvider>

@@ -166,7 +166,7 @@ const Main = ({ children = false }) => {
           </Container>
         )}
       </Box>
-      <Box bgcolor="bodyBg.main" component="main" id="main" >
+      <Box bgcolor="bodyBg.main" component="main" id="main">
         {children}
       </Box>
     </>

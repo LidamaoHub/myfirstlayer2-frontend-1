@@ -64,7 +64,7 @@ const NavList = ({ title, items }) => (
 const Footer = () => {
   const theme = useTheme();
   return (
-    <Box sx={{ background: '#ffffff' }} width="100%">
+    <Box sx={{ background: '#ffffff' }} width="100%" mt={"110px"}>
       <Container paddingY={{ md: '50px', xs: '44px' }} margin="0 auto">
         <Box display="flex" flexDirection={{ lg: 'row', md: 'column', xs: 'column' }}>
           <Grid container spacing={{ lg: 6, md: 8 }} flex={2}>
@@ -113,7 +113,7 @@ const Footer = () => {
               />
             </Grid>
           </Grid>
-          <Box display="flex" gap="24px" flexDirection="column" marginTop={{ lg: 0,  xs: 4 }} flex={1}>
+          <Box display="flex" gap="24px" flexDirection="column" marginTop={{ lg: 0, xs: 4 }} flex={1}>
             <Box width="147px" height="58px" component={'img'} src={'/icons/lxdao-logo.svg'} />
             <Typography variant="body1" lineHeight="24px" fontWeight={400} color="#666F85" textTransform="uppercase">
               LXDAO is an <span style={{ color: '#3C7AFF' }}>R&D</span>
