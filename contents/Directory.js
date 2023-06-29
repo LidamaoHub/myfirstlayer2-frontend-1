@@ -76,7 +76,7 @@ const theme = createTheme({
 theme.typography.progress = {
   fontSize: 8,
   fontWeight: 600,
-  fontFamily: 'Open Sans',
+  // fontFamily: 'Open Sans',
   color: '#747474',
 };
 
@@ -104,26 +104,12 @@ export function PcDirectory(props) {
         sx={{
           width: '247px',
           borderRadius: '18px',
-          pt: '30px',
+          pt: '10px',
           pb: '43px',
           paddingX: '11px',
         }}
         backgroundColor={theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff'}
       >
-        <Typography
-          sx={{
-            fontSize: '24px',
-            color: '#000',
-            paddingBottom: '10px',
-          }}
-        >
-          {t('directory')}
-        </Typography>
-        <Divider
-          sx={{
-            marginBottom: '20px',
-          }}
-        />
         <Box>
           {directory?.map((row, index) => {
             return <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => onTabChapter('lastOrNext', { index, ...row })} {...props} />;
@@ -140,7 +126,7 @@ export function MobileDirectory(props) {
 
   const onNext = (action, data) => {
     onTabChapter(action, data);
-    setDrawerStatus(false);
+    // setDrawerStatus(false);
   };
 
   return (
@@ -171,10 +157,13 @@ export function MobileDirectory(props) {
         )}
       </IconButton>
       <SwipeableDrawer anchor="bottom" open={drawerStatus} onClose={() => setDrawerStatus(false)} onOpen={() => setDrawerStatus(true)}>
-        <Box paddingX={3} height="400px">
+        <Box paddingX={3} paddingY={2} height="400px" >
           {directory?.map((row, index) => (
-            <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => onNext('lastOrNext', { index, ...row })} {...props} />
+            <Item rowData={{ ...row }} key={index} selected={selectedIndex === index} onNext={() => {
+              onNext('lastOrNext', { index, ...row })
+            }} {...props} />
           ))}
+          <Box sx={{ height: "16px", width: 2 }} />
         </Box>
       </SwipeableDrawer>
     </Box>
@@ -187,7 +176,7 @@ const Item = (props) => {
   const { rowData, selected, onNext } = props;
 
   return (
-    <Box className={classes.listRoot}>
+    <Box className={classes.listRoot} >
       <Box
         button
         selected={selected}
@@ -205,22 +194,24 @@ const Item = (props) => {
             alignItems: 'center',
           }}
         >
-          {!rowData?.main && (
+          {rowData?.status ?
             <Box
-              sx={{
-                height: '12px',
-                width: '3px',
-                borderRadius: '3px',
-                backgroundColor: rowData?.status ? '#39DC7A' : '#ddd',
-                marginRight: '10px',
-              }}
+              component="img"
+              src="/finish.svg"
+              mr={1}
             />
-          )}
+            :
+            <Box
+              component="img"
+              src="/not-finish.svg"
+              mr={1}
+            />
+          }
           <Box
             sx={{
               fontStyle: rowData?.main ? 'Bold' : 'Regular',
               fontWeight: rowData?.main ? 700 : 400,
-              fontSize: '14px',
+              fontSize: rowData?.main ? '16px' : '14px',
             }}
           >
             {t(formatChapterTitle(rowData?.text))}

@@ -2,9 +2,10 @@ import { useLocale, useTranslations } from 'next-intl';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Box, Link, Typography } from '@mui/material';
+import { Box, IconButton, Link, Typography } from '@mui/material';
 
 import Container from '../components/Container';
+import NewButton from '../components/NewButton';
 
 const HightlightText = styled.span`
   background-image: linear-gradient(#3266e8, #3bd5e4);
@@ -12,34 +13,31 @@ const HightlightText = styled.span`
   color: transparent;
 `;
 
-export default function SectionTop({ content, meta }) {
+export default function SectionTop({ }) {
   const t = useTranslations('Index');
   const locale = useLocale();
-  console.log('locale', locale);
+  // console.log('locale', locale);
 
   return (
-    <Container maxWidth="100%" paddingX={0} id="top-section">
-      <Link id="introduce" sx={{ position: 'relative' }}></Link>
+    <>
+      < Link id="introduce" sx={{ position: 'relative' }}></Link >
       <Box
         sx={{
-          height: { xs: '350px', md: 'calc(100vh - 60px)' },
-          background: 'url(/images/top-background.png)',
-          backgroundSize: 'cover',
+          display: 'flex',
+          justifyContent: "center",
+          width: '100vw',
+          height: { xs: '100%', md: "100vh" },
+          minHeight: { md: "830px" },
+          background: { xs: 'no-repeat black right bottom/300px url(/bg-new.png)', md: 'no-repeat black right bottom/500px url(/bg-new.png)', lg: 'no-repeat black right bottom/40% url(/bg-new.png)' },
+          py: "64px",
+          mb: "40px"
         }}
       >
-        <Box
-          sx={{
-            height: { xs: '350px', md: 'calc(100vh - 60px)' },
-            background: 'linear-gradient(118.2deg, #000000 20.86%, rgba(0, 0, 0, 0.68) 57.97%, rgba(0, 0, 0, 0) 95.07%)',
-          }}
-        >
+        <Box sx={{ display: 'flex', px: '16px', flexDirection: 'column', maxWidth: '1307px', width: '100%', height: '100%' }}>
           <Typography
             sx={{
               paddingTop: { xs: '20px', md: '147px' },
-              margin: 'auto',
-              width: { xs: '323px', md: 'calc(100% - 472px)' },
-              textTransform: 'uppercase',
-              fontSize: { xs: '30px', md: '72px' },
+              fontSize: { xs: '36px', md: '68px' },
               fontWeight: '700',
               whiteSpace: 'pre-wrap',
               color: '#fff',
@@ -51,10 +49,8 @@ export default function SectionTop({ content, meta }) {
           </Typography>
           <Typography
             sx={{
-              margin: 'auto',
-              width: { xs: '323px', md: 'calc(100% - 472px)' },
-              textTransform: 'uppercase',
-              fontSize: { xs: '30px', md: '72px' },
+              // width: { xs: '323px', md: 'calc(100% - 472px)' },
+              fontSize: { xs: '36px', md: '68px' },
               fontWeight: '700',
               whiteSpace: 'pre-wrap',
               color: '#fff',
@@ -62,96 +58,47 @@ export default function SectionTop({ content, meta }) {
               lineHeight: { xs: '40px', md: '84px' },
             }}
           >
-            MY FIRST LAYER<HightlightText> 2</HightlightText>.
+            MY FIRST LAYER
+            <Box component={"span"} sx={{
+              backgroundImage: 'linear-gradient(#3266e8, #3bd5e4)',
+              backgroundClip: "text",
+              color: "transparent",
+            }}>2</Box>
           </Typography>
           <Typography
             sx={{
-              display: { xs: 'block', md: 'none' },
-              paddingTop: '20px',
-              margin: 'auto',
-              letterSpacing: '0.5px',
-              width: { xs: '323px', md: 'calc(100% - 472px)' },
-              color: '#D5D5D5',
-              fontWeight: '400',
-              fontSize: { xs: '10px', md: '16px' },
-              lineHeight: locale == 'en' ? '16px' : '24px',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            {t('description2')}
-          </Typography>
-
-          <Typography
-            sx={{
-              display: { xs: 'none', md: 'block' },
               paddingTop: '32px',
-              margin: 'auto',
               letterSpacing: '0.5px',
-              width: { xs: '323px', md: 'calc(100% - 472px)' },
-              color: '#D5D5D5',
+              // width: { xs: '323px', md: 'calc(100% - 472px)' },
+              maxWidth: { xs: '470px', md: '800px' },
+              color: '#5F6D7E',
               fontWeight: '400',
-              fontSize: { xs: '10px', md: '16px' },
-              lineHeight: '24px',
+              fontSize: { xs: '16px', md: '18px' },
+              lineHeight: '1.5',
               whiteSpace: 'pre-line',
             }}
           >
             {t('description')}
           </Typography>
-
-          <Box
-            sx={{
-              paddingTop: { xs: '20px', md: '110px' },
-              margin: 'auto',
-              width: { xs: '323px', md: 'calc(100% - 472px)' },
-            }}
-          >
-            <Box
-              sx={{
-                boxSizing: 'border-box',
-                width: { xs: '108px', md: '243px' },
-                height: { xs: '24px', md: '60px' },
-                background: 'linear-gradient(to right,#3263E9,#3AD3E4)',
-                borderRadius: { xs: '8px', md: '18px' },
-                display: 'flex',
-                padding: '1px',
-              }}
-            >
-              <Box
-                sx={{
-                  boxSizing: 'border-box',
-                  width: { xs: '108px', md: '241px' },
-                  height: { xs: '22px', md: '58px' },
-                  background: '#000000',
-                  borderRadius: { xs: '8px', md: '18px' },
-                  display: 'flex',
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: { xs: '8px', md: '20px' },
-                    fontWeight: '700',
-                    lineHeight: '20px',
-                    margin: 'auto',
-                    fontFamily: 'Open Sans',
-                  }}
-                >
-                  <Link
-                    sx={{
-                      textDecoration: 'none',
-                      cursor: 'pointer',
-                      color: '#fff',
-                    }}
-                    href="#content"
-                    target="_self"
-                  >
-                    {t('button')}
-                  </Link>
-                </Typography>
-              </Box>
-            </Box>
+          <Box sx={{ display: "flex", mt: '32px' }}>
+            <Link href='#content' underline='none' target='_self'><NewButton>{t("button")}</NewButton></Link>
+          </Box>
+          <Box display="flex" gap={2} mt={8}>
+            <Link href="https://twitter.com/LXDAO_Official" target="_blank">
+              <Box component={'img'} src={'/icons/telegram-circle.svg'} />
+            </Link>
+            <Link href="https://twitter.com/LXDAO_Official" target="_blank">
+              <Box component={'img'} src={'/icons/twitter-circle.svg'} />
+            </Link>
+            <Link href="https://discord.lxdao.io" target="_blank">
+              <Box component={'img'} src={'/icons/discord-circle.svg'} />
+            </Link>
           </Box>
         </Box>
-      </Box>
-    </Container>
+
+      </Box >
+    </>
+
+
   );
 }

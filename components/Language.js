@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
+import NewButton from './NewButton';
 
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Menu from '@mui/material/Menu';
@@ -41,7 +42,7 @@ const Language = ({ color }) => {
         <Box aria-controls={open ? 'language-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} sx={{ cursor: 'pointer' }} onClick={handleClick}>
           <Box display="flex" alignItems="center">
             {!smallScreen && <Earth color={color} />}
-            <Typography marginLeft={smallScreen ? 0 : '5px'} marginRight={smallScreen ? 0 : '5px'} fontWeight={400} color={color} fontSize={'12px'} width={{ xs: 'auto', md: '50px' }} textAlign="center">
+            <Typography marginLeft={smallScreen ? 0 : '5px'} marginRight="5px" fontWeight={400} color={color} fontSize={'15px'} width={{ xs: 'auto', md: '50px' }} textAlign="center">
               {text[locale][smallScreen ? 'sx' : 'md']}
             </Typography>
             <Box sx={{ rotate: open && '180deg', display: 'flex', alignItems: 'center' }}>
@@ -103,7 +104,16 @@ const Language = ({ color }) => {
     );
   }, [locale, anchorEl, color]);
 
-  return LangNode();
+  // return LangNode();
+  return <Link href={route} locale={locale == "en" ? 'zh' : 'en'} >
+    <NewButton type='gray'>
+      <Earth width={20} height={20} color="#fff" />
+      <Typography fontSize={'12px'} lineHeight={"22px"} ml={'6px'}>
+        {locale == 'en' ? '简' : 'EN'}
+      </Typography>
+    </NewButton>
+  </Link >
+
 };
 
 export default Language;

@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
@@ -98,7 +97,7 @@ const coreContributors = [
     name: 'JayK',
   },
   {
-    image: '/teams/0x1998.jpg',
+    image: '/teams/aoao.png',
     description: 'Fullstack developer / Web3 builder / I have a dream.',
     name: '0x1998',
     twitter: 'https://twitter.com/0x1998',
@@ -357,10 +356,12 @@ function SimpleContributor(props) {
         <Tooltip title={props.name}>
           <Box
             component="img"
+            alt='avatar'
             src={props.image}
             sx={{
               width: '100%',
             }}
+            loading='lazy'
           />
         </Tooltip>
       </Box>
@@ -369,33 +370,31 @@ function SimpleContributor(props) {
 }
 
 export default function SectionTeam() {
-  const theme = useTheme();
   const t = useTranslations('SectionTeam');
   return (
     <SectionSimpleWrapper title={t(`sectionTeam-content-11`)} desc={t('sectionTeam-title-12')} id="team">
-      <Box mt={{ sx: '30px', sm: '60px' }}>
-        <Box padding={{ xs: 2, sm: 0 }}>
-          <Grid container spacing={2.5}>
-            {coreContributors.map((item, i) => (
-              <Grid
-                sx={{ cursor: 'pointer' }}
-                onClick={() => {
-                  if (item.twitter) {
-                    window.open(item.twitter, '_blank');
-                  }
-                }}
-                item
-                xs={12 / 7}
-                sm={12 / 7}
-                md={12 / 12}
-                key={i}
-              >
-                <SimpleContributor {...item} />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+      <Box padding={{ xs: 2, sm: '0px' }} mb="110px">
+        <Grid container spacing={2.5}>
+          {coreContributors.map((item, i) => (
+            <Grid
+              sx={{ cursor: 'pointer' }}
+              onClick={() => {
+                if (item.twitter) {
+                  window.open(item.twitter, '_blank');
+                }
+              }}
+              item
+              xs={12 / 5}
+              sm={12 / 7}
+              md={12 / 12}
+              key={i}
+            >
+              <SimpleContributor {...item} />
+            </Grid>
+          ))}
+        </Grid>
       </Box>
+
     </SectionSimpleWrapper>
   );
 }

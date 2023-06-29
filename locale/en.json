@@ -2,8 +2,8 @@
   "Index": {
     "button": "Start Learning",
     "title": "Welcome to My first layer2.",
-    "description": "MyFirstLayer 2 is the second educational nonprofit product of LXDAO's \"My First\" series. \nThe blockchain Layer 2 knowledge on the Internet is scattered and difficult to learn. \nThis product popularizes all Layer 2 knowledge to Web3 users in the form of text + pictures + animation. \nThis work is sponsored by the Ethereum Foundation and produced by the LXDAO team.\n",
-    "description2": "MyFirstLayer 2 is the second educational nonprofit product of LXDAO's \"My First\" series. Blockchain Layer 2 knowledge on the Internet is scattered and difficult to learn. This product popularizes all Layer 2 knowledge to Web3 users in the form of text + pictures + animation. This work is sponsored by the Ethereum Foundation and produced by the LXDAO team. We are very grateful to the Ethereum Foundation for its support of the Web3 ecology."
+    "description": "MyFirstLayer2 is the second educational nonprofit product of LXDAO's \"My First\" series. The blockchain Layer 2 knowledge on the Internet is scattered and difficult to learn.",
+    "description2": "MyFirstLayer2 is the second educational nonprofit product of LXDAO's \"My First\" series. Blockchain Layer 2 knowledge on the Internet is scattered and difficult to learn. This product popularizes all Layer 2 knowledge to Web3 users in the form of text + pictures + animation. This work is sponsored by the Ethereum Foundation and produced by the LXDAO team. We are very grateful to the Ethereum Foundation for its support of the Web3 ecology."
   },
 
   "PageLayout": {
@@ -20,40 +20,40 @@
     "sectionTeam-partners-13": "Co-founder of GCLX NFT and My First NFT. Web3 Buidler. ETH to the moon!",
     "sectionTeam-partners-14": "At vero eos et accusamus et iusto odio dignissimos ducimus",
     "sectionTeam-partners-15": "Qui blanditiis praesentium voluptatum deleniti atque corrupti",
-    "sectionTeam-title-12": "Description of contributor value"
+    "sectionTeam-title-12": "We are grateful to the following contributors for their selfless contributions to this project."
   },
   "SectionSponsors": {
     "sectionSponsors-title-10": "Sponsors",
-    "sectionSponsors-title-11": "Description of sponsors value"
+    "sectionSponsors-title-11": "We appreciate the generous support of the Ethereum Foundation, Gitcoin, and other donors for this project."
   },
   "SectionMyFirstProject": {
     "sectionMyFirst-title-10": "My First series",
     "view-more": "View More",
     "sectionMyFirst-title-1": "You may also wanna know...",
-    "sectionMyFirst-title-2": "Description of core contributor value"
+    "sectionMyFirst-title-2": "Other Public Goods Projects by LXDAO"
   },
   "ImpossibleTriangle": {
-    "impossibleTriangle-content-1": "尝试拖拽不可能三角",
-    "impossibleTriangle-content-2": "高可扩展性 & 高去中心化",
-    "impossibleTriangle-content-3": "高安全性 & 高可扩展性",
-    "impossibleTriangle-content-4": "高去中心化 & 高安全性",
-    "impossibleTriangle-content-5": "追求可扩展性（即性能）和去中心化程度，为保证去中心化采用了较多验证节点，为了追求性能提高了出块速度，或采用了特殊的共识机制。但提高出块速度容易导致大规模区块重组，更复杂的共识机制容易导致全网宕机等安全事故，牺牲了安全性。",
-    "impossibleTriangle-content-6": "代表区块链：Polygon 在 2023 年发生了 157 个区块的大规模重组；Solana 多次出现全网宕机的事故。",
-    "impossibleTriangle-content-7": "追求安全性和可扩展性（即性能），往往采用少数超级节点进行通讯，超级节点拥有更强的性能和更好的网络环境，彼此之间能实现超高速的通讯。但参与门槛过高，牺牲了去中心化程度。",
-    "impossibleTriangle-content-8": "代表区块链：BSC、EOS、TRON 等区块链采用了少数高性能节点维护网络，仅有 21 个超级节点进行记账。",
-    "impossibleTriangle-content-9": "追求去中心化程度和安全性，采用更多的节点和更公平的出块方式，值得信赖。但为了允许低性能节点参与验证，协调全球网络延迟，导致每秒可处理的交易数较低，牺牲了性能。",
-    "impossibleTriangle-content-10": "代表区块链：BTC、ETH 追求了极致的安全可靠和去中心化，但处理交易的速度较低，BTC 约为 7 笔/秒，ETH 约为 10 - 20 笔/秒。",
-    "impossibleTriangle-content-11": "去中心化",
-    "impossibleTriangle-content-12": "可扩展性",
-    "impossibleTriangle-content-13": "安全性"
+    "impossibleTriangle-content-1": "Try to drag the impossible triangle",
+    "impossibleTriangle-content-2": "High Scalability & High Decentralization",
+    "impossibleTriangle-content-3": "High Security & High Scalability",
+    "impossibleTriangle-content-4": "High Decentralization & High Security",
+    "impossibleTriangle-content-5": "The pursuit of high scalability (performance) and decentralization often involves the implementation of numerous verification nodes to strengthen decentralization. To improve performance, strategies such as accelerating block generation speed or adopting unique consensus mechanisms are employed. However, accelerating block generation can inadvertently trigger extensive block reorganizations. Similarly, more complex consensus mechanisms can lead to network-wide outages and other security breaches, thus compromising security. ",
+    "impossibleTriangle-content-6": "Representative blockchains: In 2023, Polygon experienced a significant reorganization of 157 blocks. Within its first two years of operation, Solana encountered eight network-wide outages.",
+    "impossibleTriangle-content-7": "The pursuit of high security and scalability (performance) often involves relying on a limited number of super nodes for communication. These super nodes possess superior performance and optimal network conditions, enabling ultra-fast communication among themselves. However, this approach compromises the level of decentralization due to the high entry threshold.",
+    "impossibleTriangle-content-8": "Representative blockchains: BSC, EOS, and TRON operate using a network maintained by only 21 high-performance nodes.",
+    "impossibleTriangle-content-9": "The pursuit of high decentralization and security often involves the utilization of a larger number of nodes and fairer methods of block generation that are considered trustworthy. However, accommodating lower-performance nodes in the verification process and managing global network latency can reduce the number of transactions processable per second, thereby compromising performance.",
+    "impossibleTriangle-content-10": "Representative blockchains: BTC and ETH prioritize exceptional security and decentralization. However, this comes at the cost of slower transaction processing speeds, with BTC handling approximately 7 transactions per second and ETH processing between 10 and 20 transactions per second.",
+    "impossibleTriangle-content-11": "Decentralization",
+    "impossibleTriangle-content-12": "Scalability",
+    "impossibleTriangle-content-13": "Security"
   },
   "Directory": {
     "directory": "Directory",
     "foreword": "Foreword",
     "attempts-for-improvement": "1.1 Attempts for improvement",
-    "blockchain-s-impossibility-triangle": "1.2 Blockchain's Impossibility Triangle",
+    "impossibility-triangle": "1.2 Impossibility Triangle",
     "layer2": "1.3 Layer 2",
-    "state-channels": "2.1 State Channels",
+    "state-channel": "2.1 State Channel",
     "side-chain": "2.2 Side Chain",
     "plasma": "2.3 Plasma",
     "rollup": "2.4 Rollup",
@@ -61,22 +61,43 @@
     "further-compression": "3.2 Further Compression",
     "optimistic-rollup": "3.3 Optimistic Rollup",
     "zero-knowledge-rollup": "3.4 Zero-Knowledge Rollup",
-    "rollup-practice": "3.5 Rollup Practice",
+    "rollup-implementation": "3.5 Rollup Implementation",
     "stark-vs-snark": "3.6 STARK vs SNARK",
     "zk-vm-vs-zk-evm": "3.7 ZK-VM vs ZK-EVM",
     "validium-and-volition": "4.1 Validium and Volition",
     "deneb-and-layer2": "4.2 Deneb and Layer 2",
     "account-abstraction": "4.3 Account Abstraction",
     "diploma": "Diploma",
-    "Before Layer2": "1. Before Layer 2",
-    "Layer2 Evolution course": "2. Layer 2 Evolution Course",
-    "Rollup Principle": "3. Rollup Principle",
-    "Layer2 Future And Prospect": "4. Layer 2 Future And Prospect",
+    "Before Layer2": "1. Bottlenecks of Public Chains",
+    "Layer2 Evolution course": "2. History of Layer 2",
+    "Rollup Principle": "3. Details of Rollup",
+    "Layer2 Future And Prospect": "4. Future Prospects",
     "next-chapter": "Next chapter",
     "previous-chapter": "Previous chapter",
     "current-chapter": "Current chapter"
   },
   "Process": {
     "process": "Process"
+  },
+  "GithubAvatar": {
+    "Contribute-to-this-chapter": "Contributors"
+  },
+  "EditChapter": {
+    "Edit-a-document": "[Edit the document]"
+  },
+  "Diploma": {
+    "title": "Diploma",
+    "content-1":"Congratulations on completing all the chapters of MyFirstLayer2!",
+    "content-2":"In recognition of your efforts and achievements, we've prepared a special graduation badge for you. This badge stands as an acknowledgement of your learning accomplishments and is a cherished honor.",
+    "content-3":"Claiming the badge is an easy process. Here's what you need to do:",
+    "content-4":"1. Click the \"Connect Wallet\" button situated in the top right corner of our website to link your wallet. (Make sure you switch to the Optimism network.)",
+    "content-5":"2*.Navigate to the OP testnet faucet address to collect test tokens. (At present, we'll provide the link to the test network, and in due course, we'll offer the link to the OP mainnet's Claim interaction component.)",
+    "content-6":"3.Hit the \"Claim\" button and voila! You've successfully received your graduation badge!",
+    "content-7":"Congratulations! You've successfully claimed your graduation badge! We hope this badge acts as a source of inspiration and motivation for your ongoing journey. We eagerly anticipate your sustained dedication to learning and your adventurous journey into the world of Web3!"
+  },
+  "SectionLXDAOIntro":{
+    "title":"LXDAO IS AN R&D- FOCUSED DAO IN WEB3",
+    "content":"Focus on supporting valuable Web3 Public Goods and Open Source sustainably.",
+    "button":"JOIN US"
   }
 }

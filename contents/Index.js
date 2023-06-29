@@ -1,9 +1,13 @@
+import { useTranslations } from 'next-intl';
+import { formatChapterTitle } from '../utils.js';
+import Head from 'next/head'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useLocale } from 'next-intl';
 import { MDXRemote } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-
+import { useRouter } from 'next/router'
 // import { Affix } from 'antd';
 import { Box, Hidden, Link, Skeleton, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -36,7 +40,7 @@ export default function Content(props) {
     currentIndex: 0,
   });
   const [mdxSource, setMdxSource] = useState('');
-
+  const [ready, setReady] = useState(false);
   const [directory, setDirectory] = useState(md.props.file);
   const [readStatus, setReadStatus] = useState([true]);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -47,12 +51,14 @@ export default function Content(props) {
   });
   const [isLoading, setLoading] = useState(false);
   const { ref, inView, entry } = useInView({
-    threshold: 0.3,
+    threshold: 0,
   });
+
+  const locale = useLocale();
 
   useEffect(() => {
     requestMdxSource(name);
-  }, [name]);
+  }, [name, locale]);
 
   const requestMdxSource = (name) => {
     setLoading(true);
@@ -79,7 +85,7 @@ export default function Content(props) {
     return count;
   };
   const handleTabChapter = (action, chapter) => {
-    console.log('[current chapter data]', chapter);
+    // console.log('[current chapter data]', chapter);
     const mainArr = [1, 5, 10, 18];
 
     if (!action) {
@@ -124,6 +130,8 @@ export default function Content(props) {
           next: directory[selectedIndex]?.text,
         });
         setSelectedIndex(selectedIndex - 2);
+        router.push(`#${directory[selectedIndex - 2].text}`)
+
 
         setName(newState[selectedIndex - 2]?.text);
       } else {
@@ -139,6 +147,7 @@ export default function Content(props) {
           status: true,
         };
         setSelectedIndex(selectedIndex - 1);
+        router.push(`#${directory[selectedIndex - 1].text}`)
 
         setName(newState[selectedIndex - 1]?.text);
       }
@@ -181,6 +190,7 @@ export default function Content(props) {
           next: selectedIndex !== chapterCount ? directory[selectedIndex + 3]?.text : '',
         });
         setSelectedIndex(selectedIndex + 2);
+        router.push(`#${directory[selectedIndex + 2].text}`)
 
         setName(newState[selectedIndex + 2]?.text);
       } else {
@@ -197,6 +207,7 @@ export default function Content(props) {
           status: true,
         };
         setSelectedIndex(selectedIndex + 1);
+        router.push(`#${directory[selectedIndex + 1].text}`)
 
         setName(newState[selectedIndex + 1]?.text);
       }
@@ -225,6 +236,7 @@ export default function Content(props) {
           next: newState[chapter.index + 2].text,
         });
         setSelectedIndex(chapter?.index + 1);
+        router.push(`#${directory[chapter?.index + 1].text}`)
 
         setName(newState[chapter.index + 1]?.text);
       } else if (chapter.index === 0) {
@@ -234,6 +246,7 @@ export default function Content(props) {
           next: newState[chapter.index + 2].text,
         });
         setSelectedIndex(chapter?.index);
+        router.push(`#${directory[chapter?.index].text}`)
 
         setName(newState[chapter.index]?.text);
       } else {
@@ -273,6 +286,8 @@ export default function Content(props) {
           next: chapter?.index !== chapterCount + 3 && newState[chapter.index + 1].text,
         });
         setSelectedIndex(chapter?.index);
+        // console.log(directory)
+        router.push(`#${directory[chapter?.index].text}`)
 
         setName(newState[chapter.index]?.text);
       }
@@ -316,7 +331,7 @@ export default function Content(props) {
       acc += cur.status;
       return acc;
     }, 0);
-    console.log(readed);
+    // console.log(readed);
     if (readed > 2) {
       setStorage('directoryStatus', JSON.stringify({ data: directory }));
     }
@@ -324,20 +339,33 @@ export default function Content(props) {
       setStorage('selectedIndex', JSON.stringify({ data: selectedIndex }));
     }
   }, [directory, selectedIndex]);
+  const router = useRouter()
 
   useEffect(() => {
+    setReady(false)
     const directoryStatus = getStorage('directoryStatus');
     const selectedIndexStore = getStorage('selectedIndex');
     const jsonDirectory = JSON.parse(directoryStatus)?.data;
-    const jsonSelect = JSON.parse(selectedIndexStore)?.data;
+    let jsonSelect = JSON.parse(selectedIndexStore)?.data;
+    const aspath = router.asPath.split('#')[1];
+
+
+
     if (directoryStatus) {
       setDirectory(JSON.parse(directoryStatus).data);
     }
     if (selectedIndexStore) {
-      setSelectedIndex(JSON.parse(selectedIndexStore)?.data);
       if (jsonDirectory) {
+        for (let i = 0; i < jsonDirectory.length; i++) {
+          if (directory[i].text == aspath) {
+            jsonSelect = i
+            break;
+          }
+        }
         setName(jsonDirectory[jsonSelect]?.text);
+        // setName(jsonDirectory[jsonSelect]?.text);
       }
+      setSelectedIndex(jsonSelect);
       setReadData({
         counter: chapterCount,
         read: computeReadCount(jsonDirectory),
@@ -347,112 +375,115 @@ export default function Content(props) {
         current: jsonDirectory[jsonSelect]?.text,
         last: jsonSelect === 0 ? '' : jsonDirectory[jsonSelect - 1]?.text,
         next: jsonSelect === chapterCount + 4 ? '' : jsonDirectory[jsonSelect + 1]?.text,
-      })
+      });
     }
+    setReady(true)
   }, []);
-
+  const t = useTranslations('Directory');
   return (
-    <ReadContext.Provider value={{ readData, setReadData }}>
-      <Link id="content" sx={{ position: 'relative', top: '-80px' }}></Link>
+    <>
+      <Head>
+        <title>{ready && (t(formatChapterTitle(name)) + ' - ')}My First Layer2</title>
+      </Head>
+      <Link id="content" sx={{ position: 'relative' }}></Link>
       <Typography id={'root'}></Typography>
-      {/* <Box sx={{background: 'green', display: 'flex' }}> */}
-
-      <Container paddingX={2}>
-        <Box
-          ref={ref}
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            height: '100%',
-          }}
-        >
-          <Hidden smDown>
-            <Box
-              sx={{
-                top: 0,
-              }}
-            >
-              <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
-            </Box>
-          </Hidden>
-
-          {isLoading ? (
-            <Skeleton
-              animation="wave"
-              variant="rect"
-              width={mdScreen ? '1200px' : '100vw'}
-              sx={{
-                height: '100vh',
-                marginLeft: mdScreen ? '32px' : 0,
-              }}
-            >
-              <Box className={mdxStyle.root} textDecoration={'none'}>
-                {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
-              </Box>
-            </Skeleton>
-          ) : (
-            <Box
-              sx={{
-                flexGrow: 1,
-                marginLeft: mdScreen ? '32px' : 0,
-              }}
-            >
+      <ReadContext.Provider value={{ readData, setReadData }}>
+        <Container paddingX={2}>
+          <Box
+            ref={ref}
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              height: '100%',
+            }}
+          >
+            <Hidden mdDown>
               <Box
                 sx={{
-                  display: 'flex',
-                  backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
-                  maxWidth: mdScreen ? '1200px' : '100vw',
-                  color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
-                  mt: { xs: '20px', sm: 0 },
+                  top: 0,
                 }}
-                borderRadius={2}
-                padding={{
-                  xs: 2,
-                  sm: 8,
+              >
+                <PcDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></PcDirectory>
+              </Box>
+            </Hidden>
+
+            {isLoading ? (
+              <Skeleton
+                animation="wave"
+                variant="rect"
+                width={mdScreen ? '1200px' : '100vw'}
+                sx={{
+                  height: '400vh',
+                  marginLeft: mdScreen ? '32px' : 0,
                 }}
               >
                 <Box className={mdxStyle.root} textDecoration={'none'}>
                   {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
                 </Box>
+              </Skeleton>
+            ) : (
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  marginLeft: mdScreen ? '32px' : 0,
+                }}
+              >
+                <Box
+                  sx={{
+                    display: 'flex',
+                    backgroundColor: theme.palette?.mode === 'dark' ? '#0F0F0F' : '#fff',
+                    maxWidth: mdScreen ? '1200px' : '100vw',
+                    color: theme.palette?.mode === 'dark' ? '#fff' : '#000',
+                    mt: { xs: '20px', md: '0' },
+                  }}
+                  borderRadius={2}
+                  padding={{
+                    xs: 2,
+                    sm: 8,
+                  }}
+                >
+                  <Box className={mdxStyle.root} textDecoration={'none'}>
+                    {mdxSource && <MDXRemote components={components} {...mdxSource}></MDXRemote>}
+                  </Box>
+                </Box>
+                <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
               </Box>
-              <TabChapter marginTop={{ xs: '15px', sm: '32px' }} chapterData={{ ...chapterData, currentIndex: readData?.currentIndex, read: readData?.read, counter: readData?.counter }} onTabChapter={handleTabChapter}></TabChapter>
-            </Box>
-          )}
-        </Box>
-      </Container>
-      {/* <GithubAvatar></GithubAvatar> */}
-      {/* </Box> */}
-      {inView && (
-        <Hidden smUp>
-          <Box
-            sx={{
-              position: 'fixed',
-              bottom: 0,
-              top: 'auto',
-              width: '100vw',
-              zIndex: 100,
-              boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 1)',
-            }}
-            backgroundColor="#FFFFFF"
-            display="flex"
-            height={80}
-            alignItems="center"
-            justifyContent="space-around"
-            marginTop={4}
-            paddingX={2}
-          >
-            <Box>
-              <ConnectButton />
-            </Box>
-            <Box flexGrow={2} marginX="20px">
-              <Progress />
-            </Box>
-            <Hidden smUp>
-              <MobileDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></MobileDirectory>
-            </Hidden>
+            )}
           </Box>
-        </Hidden>
-      )}
-    </ReadContext.Provider>
+        </Container>
+        {inView && (
+          <Hidden mdUp>
+            <Box
+              sx={{
+                position: 'fixed',
+                bottom: 0,
+                top: 'auto',
+                width: '100vw',
+                zIndex: 100,
+                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 1)',
+              }}
+              backgroundColor="#FFFFFF"
+              display="flex"
+              height={80}
+              alignItems="center"
+              justifyContent="space-around"
+              marginTop={4}
+              paddingX={2}
+            >
+              <Box>
+                <ConnectButton />
+              </Box>
+              <Box flexGrow={2} marginX="20px">
+                <Progress />
+              </Box>
+              <Hidden mdUp>
+                <MobileDirectory directory={directory} readStatus={readStatus} selectedIndex={selectedIndex} onTabChapter={handleTabChapter}></MobileDirectory>
+              </Hidden>
+            </Box>
+          </Hidden>
+        )}
+      </ReadContext.Provider>
+    </>
+
   );
 }
